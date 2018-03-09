@@ -2,13 +2,20 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <vector>
+
+#include <boost/range/iterator_range.hpp>
+#include <boost/assert.hpp>
 
 #include "strong_int.hpp"
+#include "strong_vec.hpp"
 
 
 struct MyTag {};
 
 using MyInt = StrongInt<unsigned, MyTag>;
+
+using MyVec = StrongVec< std::vector<int>, MyInt >;
 
 int main()
 {
@@ -27,5 +34,10 @@ int main()
 			  << l << " "
 			  << m << " "
 			  << n << std::endl;
+
+	MyVec vec(j, 500);
+	BOOST_ASSERT(vec[i] == 500);
+
+
 	return 0;
 }
